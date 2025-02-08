@@ -1,0 +1,7 @@
+Flask
+gunicorn
+fpdf
+pytesseract
+pdf2image
+Pillow
+openai

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("/static/css/imagenes/banner_solar_2.jpg");
+    background-size: cover;  
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 5px solid red;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+#ubicacion{
+    max-width: 300px;
+}
+
+
+.custom-dropdown {
+    position: relative;
+    width: 250px;
+    cursor: pointer;
+}
+
+.selected-option {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.selected-option img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.option img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+.logo_calculadora {
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;  /* Centra verticalmente */
+    height: 150px; /* Ajusta la altura según tu diseño */
+    padding: 20px;
+}
+
+.logo_calculadora img {
+    max-width: 100%; /* Hace que el logo sea responsivo */
+    height: auto; /* Mantiene la proporción */
+    max-height: 100px; /* Ajusta la altura máxima del logo */
+    object-fit: contain; /* Asegura que el logo no se deforme */
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/calculadora_solar_ferragro.css">
+    <title>Cotizador de Proyectos Solares</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo_calculadora">
+            <img src="/static/css/imagenes/logo_ferragro.png" alt="Logo Solartech">
+        </div>
+
+        <h1>Cotizador de Proyectos Solares</h1>
+        <form action="/generar_pdf_ferragro" method="POST">
+            <label for="cliente">Nombre del Cliente:*</label>
+            <input type="text" id="cliente" name="cliente" required><br><br>
+
+            <label for="proyecto">Nombre del Proyecto / Empresa:</label>
+            <input type="text" id="proyecto" name="proyecto"><br><br>
+
+            <label for="correo">Correo del cliente:</label>
+            <input type="email" id="correo" name="correo" required><br><br>
+
+            <label for="celular">Número de contacto:</label>
+            <input type="tel" id="celular" name="celular" required><br><br>
+
+            <label for="correo_asesor">Correo del asesor:</label>
+            <input type="email" id="correo_asesor" name="correo_asesor"><br><br>
+
+            <label for="ubicacion">Zona del Proyecto:*</label>
+            <select id="ubicacion" name="ubicacion" required>
+                <option value="">Seleccione una zona...</option>
+            </select>
+            <br><br>
+
+            <label for="potencia">Consumo promedio mensual de energía (kWp/mes):*</label>
+            <input type="number" id="potencia" name="potencia" required><br><br>
+
+            <label for="costo">Costo del KWp($):*</label>
+            <input type="number" id="costo" name="costo" required><br><br>
+
+            <label for="area">Área disponible para el proyecto:*</label>
+            <input type="number" id="area" name="area" required><br><br>
+
+            <button type="submit">GENERAR COTIZACIÓN</button>
+        </form>
+    </div>
+    <!-- Enlaza el archivo scripts.js -->
+    <script type="module" src="/static/js/scripts.js"></script>
+    <script type="module" src="/static/js/zona_loader.js"></script>
+</body>
+</html>
+

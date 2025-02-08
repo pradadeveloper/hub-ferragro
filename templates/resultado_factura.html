@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Proyecto Solar</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/calculadora_ia.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Datos del Cliente</h2>
+        <p><strong>Nombre:</strong> {{ cliente['cliente'] }}</p>
+        <p><strong>Correo:</strong> {{ cliente['correo'] }}</p>
+        <p><strong>Teléfono:</strong> {{ cliente['celular'] }}</p>
+        <p><strong>Correo Asesor:</strong> {{ cliente['correo_asesor'] }}</p>
+        <p><strong>Área Disponible:</strong> {{ cliente['area'] }} m²</p>
+
+        <h2>Datos Extraídos de la Factura</h2>
+        <p><strong>Zona del Proyecto:</strong> {{ datos['Zona del Proyecto'] }}</p>
+        <p><strong>Consumo Promedio Mensual:</strong> {{ datos['Consumo promedio mensual de energía'] }}</p>
+        <p><strong>Costo del kWh:</strong> {{ datos['Costo del kWh'] }}</p>
+
+        <h2>Resultados del Proyecto Solar</h2>
+        <p><strong>Costo Proyecto:</strong> {{ datos['Resultados Generales']['Costo Proyecto'] }}</p>
+        <p><strong>Ahorro Anual:</strong> {{ datos['Resultados Generales']['Ahorro Anual'] }}</p>
+        <p><strong>Disminución de Renta:</strong> {{ datos['Resultados Generales']['Disminución de Renta'] }}</p>
+        <p><strong>Área mínima requerida para páneles:</strong> {{ datos['Resultados Generales']['Área mínima requerida para páneles'] }}</p>
+
+        <h3>Impacto Ambiental</h3>
+        <p><strong>Reducción de CO2 (toneladas):</strong> {{ datos['Resultados Generales']['Impacto Ambiental']['reduccion_CO2_toneladas'] }}</p>
+        <p><strong>Kilómetros no recorridos en auto:</strong> {{ datos['Resultados Generales']['Impacto Ambiental']['km_equivalentes_auto'] }}</p>
+    </div>
+</body>
+</html>
+

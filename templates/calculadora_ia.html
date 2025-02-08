@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Facturación</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/calculadora_ia.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Formulario de Facturación</h2>
+        <form action="/procesar_factura" method="POST" enctype="multipart/form-data">
+            <label for="cliente">Nombre del Cliente:</label>
+            <input type="text" id="cliente" name="cliente" required>
+        
+            <label for="correo">Correo del Cliente:</label>
+            <input type="email" id="correo" name="correo" required>
+        
+            <label for="celular">Número de Contacto:</label>
+            <input type="tel" id="celular" name="celular" required>
+        
+            <label for="correo_asesor">Correo del Asesor:</label>
+            <input type="email" id="correo_asesor" name="correo_asesor" required>
+        
+            <label for="area">Área disponible:</label>
+            <input type="text" id="area" name="area" required>
+        
+            <label for="factura_frontal">Adjuntar Imagen Factura Frontal:</label>
+            <input type="file" id="factura_frontal" name="factura_frontal" accept=".pdf,.jpg,.png" required>
+        
+            <label for="factura_atras">Adjuntar Imagen Factura Atras:</label>
+            <input type="file" id="factura_atras" name="factura_atras" accept=".pdf,.jpg,.png" required>
+        
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+</body>
+</html>
