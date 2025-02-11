@@ -6,8 +6,21 @@ from modules.calculadora_ia import extraer_texto_factura, analizar_factura_con_o
 import json
 import os
 from datetime import datetime
+import subprocess
+
 
 app = Flask(__name__)
+
+@app.route('/check_tesseract')
+def check_tesseract():
+    try:
+        result = subprocess.run(['tesseract', '--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.returncode == 0:
+            return f"Tesseract está instalado: {result.stdout.decode('utf-8')}"
+        else:
+            return f"Error al verificar Tesseract: {result.stderr.decode('utf-8')}"
+    except Exception as e:
+        return f"Error al ejecutar el comando de Tesseract: {str(e)}"
 
 # 🗕 LOGICA DEL NUMERO DE COTIZACIÓN
 def cargar_cotizacion():
