@@ -10,7 +10,7 @@
 <body>
 
     <div class="container">
-        <h2>Formulario de Facturación</h2>
+        <h2>Calculadora de Energía Solar con IA</h2>
         <form action="/procesar_factura" method="POST" enctype="multipart/form-data">
             <label for="cliente">Nombre del Cliente:</label>
             <input type="text" id="cliente" name="cliente" required>
@@ -29,12 +29,47 @@
         
             <label for="factura_frontal">Adjuntar Imagen Factura Frontal:</label>
             <input type="file" id="factura_frontal" name="factura_frontal" accept=".pdf,.jpg,.png" required>
-        
+            <a href="#" onclick="openPopup('popupFrontal')">¿Necesitas ayuda?</a>
+
+            <br><br>
+
             <label for="factura_atras">Adjuntar Imagen Factura Atras:</label>
             <input type="file" id="factura_atras" name="factura_atras" accept=".pdf,.jpg,.png" required>
-        
+            <a href="#" onclick="openPopup('popupAtras')">¿Necesitas ayuda?</a>
+
+            <!-- Pop-up para Factura Frontal -->
+            <div id="popupFrontal" class="popup" onclick="closePopup(event, 'popupFrontal')">
+                <div class="popup-content">
+                    <button class="close-btn" onclick="closePopup(event, 'popupFrontal')">&times;</button>
+                    <img src="/static/css/imagenes/ayuda_1.jpg" alt="Ejemplo de Factura Frontal">
+                </div>
+            </div>
+
+            <!-- Pop-up para Factura Atras -->
+            <div id="popupAtras" class="popup" onclick="closePopup(event, 'popupAtras')">
+                <div class="popup-content">
+                    <button class="close-btn" onclick="closePopup(event, 'popupAtras')">&times;</button>
+                    <img src="/static/css/imagenes/ayuda_2.jpg" alt="Ejemplo de Factura Atras">
+                </div>
+            </div>
             <button type="submit">Enviar</button>
         </form>
+
+        <script>
+            // Función para abrir el pop-up
+            function openPopup(id) {
+               document.getElementById(id).style.display = 'flex';
+            }
+            // Función para cerrar el pop-up
+            function closePopup(event, id) {
+                if (event.target.className === 'popup') {
+                    document.getElementById(id).style.display = 'none';
+                } else if (event.target.className === 'close-btn') {
+                    event.stopPropagation(); // Evita que el clic en el botón cierre por error otros elementos
+                    document.getElementById(id).style.display = 'none';
+                }
+            }
+        </script>
     </div>
 
 </body>
