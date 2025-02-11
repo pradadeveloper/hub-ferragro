@@ -5,6 +5,7 @@ services:
     buildCommand: |
       apt-get update && \
       apt-get install -y tesseract-ocr tesseract-ocr-spa libleptonica-dev pkg-config poppler-utils && \
+      ln -s /usr/bin/tesseract /usr/local/bin/tesseract && \
       pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
