@@ -4,6 +4,9 @@ from PIL import Image
 import openai
 import os
 
+# Configurar la ruta de Tesseract para el entorno de Render
+pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
+
 # Leer la clave desde la variable de entorno
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
