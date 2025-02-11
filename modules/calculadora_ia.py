@@ -5,13 +5,13 @@ import openai
 import os
 import shutil
 
-# Buscar la ruta de Tesseract
-tesseract_path = shutil.which('tesseract')
+# # Buscar la ruta de Tesseract
+# tesseract_path = shutil.which('tesseract')
 
-if tesseract_path:
-    pytesseract.pytesseract.tesseract_cmd = tesseract_path
-else:
-    raise EnvironmentError("Tesseract no está instalado o no se encuentra en el PATH.")
+# if tesseract_path:
+#     pytesseract.pytesseract.tesseract_cmd = tesseract_path
+# else:
+#     raise EnvironmentError("Tesseract no está instalado o no se encuentra en el PATH.")
 
 # Leer la clave desde la variable de entorno
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -27,6 +27,14 @@ def extraer_texto_factura(filepath):
     """
     Extrae texto de una factura que puede ser una imagen o un archivo PDF.
     """
+
+    # Buscar Tesseract solo cuando se llama a la función
+    tesseract_path = shutil.which('tesseract')
+    if tesseract_path:
+        pytesseract.pytesseract.tesseract_cmd = tesseract_path
+    else:
+        raise EnvironmentError("Tesseract no está instalado o no se encuentra en el PATH.")
+    
     try:
         if filepath.lower().endswith(('.png', '.jpg', '.jpeg')):
             texto = pytesseract.image_to_string(Image.open(filepath), lang='spa')
@@ -41,6 +49,7 @@ def extraer_texto_factura(filepath):
         texto = f"Error al procesar la factura: {str(e)}"
     
     return texto
+
 
 def analizar_factura_con_openai(texto_factura):
     """

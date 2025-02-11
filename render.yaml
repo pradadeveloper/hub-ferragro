@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: nombre-de-tu-aplicacion
+    name: hub-ferragro
     runtime: python
     buildCommand: |
       apt-get update && apt-get install -y tesseract-ocr tesseract-ocr-spa
@@ -9,3 +9,4 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11
+
