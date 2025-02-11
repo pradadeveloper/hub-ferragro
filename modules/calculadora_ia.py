@@ -3,9 +3,15 @@ from pdf2image import convert_from_path
 from PIL import Image
 import openai
 import os
+import shutil
 
-# Configurar la ruta de Tesseract para el entorno de Render
-pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
+# Buscar la ruta de Tesseract
+tesseract_path = shutil.which('tesseract')
+
+if tesseract_path:
+    pytesseract.pytesseract.tesseract_cmd = tesseract_path
+else:
+    raise EnvironmentError("Tesseract no está instalado o no se encuentra en el PATH.")
 
 # Leer la clave desde la variable de entorno
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -21,15 +27,19 @@ def extraer_texto_factura(filepath):
     """
     Extrae texto de una factura que puede ser una imagen o un archivo PDF.
     """
-    if filepath.lower().endswith(('.png', '.jpg', '.jpeg')):
-        texto = pytesseract.image_to_string(Image.open(filepath), lang='spa')
-    elif filepath.lower().endswith('.pdf'):
-        pages = convert_from_path(filepath)
-        texto = ''
-        for page in pages:
-            texto += pytesseract.image_to_string(page, lang='spa')
-    else:
-        texto = ''
+    try:
+        if filepath.lower().endswith(('.png', '.jpg', '.jpeg')):
+            texto = pytesseract.image_to_string(Image.open(filepath), lang='spa')
+        elif filepath.lower().endswith('.pdf'):
+            pages = convert_from_path(filepath)
+            texto = ''
+            for page in pages:
+                texto += pytesseract.image_to_string(page, lang='spa')
+        else:
+            raise ValueError("Formato de archivo no compatible. Usa PNG, JPG o PDF.")
+    except Exception as e:
+        texto = f"Error al procesar la factura: {str(e)}"
+    
     return texto
 
 def analizar_factura_con_openai(texto_factura):
@@ -60,14 +70,18 @@ def analizar_factura_con_openai(texto_factura):
     Costo del kWh: $<valor> COP
     """
 
-    respuesta = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": "Eres un asistente que extrae datos de facturas de servicios públicos."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=200
-    )
+    try:
+        respuesta = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "Eres un asistente que extrae datos de facturas de servicios públicos."},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=200
+        )
 
-    resultado = respuesta.choices[0].message['content'].strip()
+        resultado = respuesta.choices[0]['message']['content'].strip()
+    except Exception as e:
+        resultado = f"Error al analizar la factura con OpenAI: {str(e)}"
+    
     return resultado
